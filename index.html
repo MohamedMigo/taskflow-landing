@@ -1,0 +1,81 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Taskflow - Plan work without the noise</title>
+<meta name="description" content="Taskflow is a concept landing page for a simple project planning app. Design demo.">
+<style>
+:root{--bg:#0b1020;--card:#131a33;--line:#243056;--txt:#e8ecff;--mut:#9aa6d1;--a:#7c8cff;--b:#4de1c1}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
+a{color:inherit;text-decoration:none}.w{max-width:1080px;margin:auto;padding:0 22px}
+nav{position:sticky;top:0;backdrop-filter:blur(12px);background:#0b1020cc;border-bottom:1px solid var(--line);z-index:9}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;font-size:20px;display:flex;gap:8px;align-items:center}.logo i{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--a),var(--b))}
+nav ul{display:flex;gap:26px;list-style:none;color:var(--mut);font-size:15px}
+.btn{display:inline-block;padding:11px 20px;border-radius:12px;font-weight:600;background:linear-gradient(135deg,var(--a),var(--b));color:#06101f;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px #7c8cff44}.btn.o{background:none;border:1px solid var(--line);color:var(--txt)}
+.hero{padding:90px 0 60px;text-align:center;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;width:600px;height:600px;left:50%;top:-250px;transform:translateX(-50%);background:radial-gradient(#7c8cff55,transparent 65%);animation:p 7s ease-in-out infinite alternate}
+@keyframes p{to{transform:translateX(-50%) scale(1.25);opacity:.6}}
+.tag{display:inline-block;border:1px solid var(--line);padding:5px 14px;border-radius:99px;color:var(--mut);font-size:13px;margin-bottom:22px}
+h1{font-size:clamp(36px,6vw,66px);line-height:1.08;letter-spacing:-1.5px;position:relative}
+h1 span{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;color:transparent}
+.hero p{max-width:560px;margin:22px auto 32px;color:var(--mut);font-size:18px;position:relative}
+.cta{display:flex;gap:12px;justify-content:center;position:relative;flex-wrap:wrap}
+.board{margin:56px auto 0;max-width:900px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative;text-align:left}
+.col{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.col h4{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.t{background:#0e1530;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:9px;font-size:14px;animation:f 5s ease-in-out infinite alternate}
+.t:nth-child(3){animation-delay:-2s}.t:nth-child(4){animation-delay:-3.5s}
+@keyframes f{to{transform:translateY(-5px)}}
+.t b{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:var(--a)}.t.g b{background:var(--b)}.t.y b{background:#ffc766}
+section{padding:80px 0}h2{font-size:clamp(28px,4vw,40px);letter-spacing:-1px;text-align:center}
+.sub{text-align:center;color:var(--mut);max-width:520px;margin:12px auto 44px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;transition:.25s}
+.card:hover{transform:translateY(-6px);border-color:var(--a)}.card .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-weight:800;color:#06101f;background:linear-gradient(135deg,var(--a),var(--b));margin-bottom:14px}.card p{color:var(--mut);font-size:15px}
+.steps{counter-reset:s}.step{position:relative;padding-left:60px;margin-bottom:26px}
+.step:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:42px;height:42px;border-radius:12px;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;font-weight:700;color:var(--b)}
+.step p{color:var(--mut)}
+.price{align-items:stretch}.price .card.h{border-color:var(--a);background:linear-gradient(#161f42,#131a33)}
+.pr{font-size:38px;font-weight:800;margin:8px 0}.pr small{font-size:15px;color:var(--mut);font-weight:400}
+.price ul{list-style:none;padding:0;margin:14px 0 20px;color:var(--mut);font-size:15px}.price li:before{content:"✓ ";color:var(--b)}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:12px;max-width:720px;margin-inline:auto}
+summary{cursor:pointer;font-weight:600}details p{color:var(--mut);margin-top:10px}
+.final{text-align:center;background:linear-gradient(135deg,#1a2350,#10294a);border:1px solid var(--line);border-radius:26px;padding:56px 22px}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mut);font-size:14px;text-align:center}
+.rv{opacity:0;transform:translateY(24px);transition:.7s}.rv.on{opacity:1;transform:none}
+@media(max-width:760px){nav ul{display:none}.board{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<nav><div class="w"><a class="logo" href="#"><i></i>Taskflow</a><ul><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul><a class="btn" href="#cta">Join waitlist</a></div></nav>
+<header class="hero"><div class="w"><span class="tag">Concept design demo</span>
+<h1>Plan your work.<br><span>Skip the noise.</span></h1>
+<p>Taskflow is a calm project planner: one board, one inbox, one weekly plan. Built for small teams who would rather ship than manage tools.</p>
+<div class="cta"><a class="btn" href="#cta">Get early access</a><a class="btn o" href="#features">See features</a></div>
+<div class="board"><div class="col"><h4>To do</h4><div class="t"><b></b>Draft launch checklist</div><div class="t y"><b></b>Review pricing page</div><div class="t"><b></b>Plan sprint goals</div></div>
+<div class="col"><h4>In progress</h4><div class="t"><b></b>Design onboarding flow</div><div class="t g"><b></b>Write release notes</div></div>
+<div class="col"><h4>Done</h4><div class="t g"><b></b>Set up shared calendar</div><div class="t g"><b></b>Import old tasks</div><div class="t g"><b></b>Invite the team</div></div></div></div></header>
+<section id="features"><div class="w"><h2 class="rv">Everything you need, nothing you don't</h2><p class="sub rv">Six focused tools that work together.</p>
+<div class="grid">
+<div class="card rv"><div class="ic">B</div><h3>Boards</h3><p>Drag tasks across columns. Switch between board, list and timeline views.</p></div>
+<div class="card rv"><div class="ic">I</div><h3>Inbox</h3><p>Capture ideas fast, then sort them into projects when you are ready.</p></div>
+<div class="card rv"><div class="ic">W</div><h3>Weekly plan</h3><p>Pick what matters this week. Everything else stays out of sight.</p></div>
+<div class="card rv"><div class="ic">C</div><h3>Comments</h3><p>Talk about the work right on the task, with mentions and attachments.</p></div>
+<div class="card rv"><div class="ic">R</div><h3>Smart reminders</h3><p>Gentle nudges for due dates, grouped into one daily digest.</p></div>
+<div class="card rv"><div class="ic">P</div><h3>Private by default</h3><p>Projects are invite-only. You choose who sees what.</p></div></div></div></section>
+<section id="how"><div class="w" style="max-width:720px"><h2 class="rv">Up and running in minutes</h2><p class="sub rv">No setup call. No training.</p><div class="steps">
+<div class="step rv"><h3>Create a project</h3><p>Start from a blank board or a simple template.</p></div>
+<div class="step rv"><h3>Add your tasks</h3><p>Type them in, paste a list, or import a CSV.</p></div>
+<div class="step rv"><h3>Plan the week</h3><p>Choose the few tasks that matter and get to work.</p></div></div></div></section>
+<section id="pricing"><div class="w"><h2 class="rv">Simple pricing</h2><p class="sub rv">Example plans for this concept design.</p>
+<div class="grid price">
+<div class="card rv"><h3>Starter</h3><div class="pr">$0<small> /month</small></div><ul><li>3 projects</li><li>Board and list views</li><li>Up to 5 members</li></ul><a class="btn o" href="#cta">Join waitlist</a></div>
+<div class="card h rv"><h3>Team</h3><div class="pr">$8<small> /user/month</small></div><ul><li>Unlimited projects</li><li>Timeline and weekly plan</li><li>Daily digest reminders</li></ul><a class="btn" href="#cta">Join waitlist</a></div>
+<div class="card rv"><h3>Business</h3><div class="pr">$15<small> /user/month</small></div><ul><li>Everything in Team</li><li>Roles and permissions</li><li>Priority support</li></ul><a class="btn o" href="#cta">Join waitlist</a></div></div></div></section>
+<section id="faq"><div class="w"><h2 class="rv" style="margin-bottom:34px">Questions</h2>
+<details><summary>Is Taskflow a real product?</summary><p>No. This page is a design concept built to show a clean SaaS landing page. The plans and features are examples.</p></details>
+<details><summary>Can I import tasks from other tools?</summary><p>In this concept, yes: CSV import is part of the design.</p></details>
+<details><summary>Does it work on mobile?</summary><p>The layout is fully responsive, like this page.</p></details></div></section>
+<section id="cta"><div class="w"><div class="final rv"><h2>Ready for a calmer week?</h2><p class="sub">This is a demo, so there is no real signup. Imagine the button works.</p><a class="btn" href="#">Join the waitlist</a></div></div></section>
+<footer>© 2026 Taskflow concept. Design demo, not a real product.</footer>
+<script>const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('on')),{threshold:.15});document.querySelectorAll('.rv').forEach(e=>io.observe(e));</script>
+</body></html>
